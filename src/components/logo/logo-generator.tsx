@@ -13,11 +13,13 @@ import { useServerActionMutation } from "@/hooks/server-action-hooks";
 
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
+import LogoGenerationResults from "./logo-generation-results";
 import LogoIndustrySelector from "./logo-industry-selector";
 import LogoStyleSelector from "./logo-style-selector";
 
 export const formSchema = z.object({
-  brand_name: z.string().min(1),
+  logo_name: z.string().min(1, { message: "Name cannot be empty" }),
+  brand_name: z.string().min(1, { message: "Brand Name cannot be empty" }),
   brand_identity: z.string().min(1),
   industry: z.string().min(1),
   logo_style: z.string().min(1),
@@ -31,8 +33,11 @@ const LogoGenerator = () => {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
 
-  const { mutate: generateLogos, isPending } =
-    useServerActionMutation(generateLogosAction);
+  const {
+    mutate: generateLogos,
+    isPending,
+    data: logo,
+  } = useServerActionMutation(generateLogosAction);
 
   const {
     setValue,
@@ -43,6 +48,7 @@ const LogoGenerator = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      logo_name: "",
       brand_name: "",
       brand_identity: "",
       industry: "",
@@ -61,13 +67,23 @@ const LogoGenerator = () => {
       industry: data.industry === "Other" ? industry : data.industry,
     };
 
-    console.log(data);
+    generateLogos({ name: data.logo_name, config: body });
   };
 
   return (
     <div className="mx-auto w-1/2">
       <div id="form" className="w-full">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div>
+            <Input
+              size="lg"
+              label="Logo Name"
+              isInvalid={!!errors.logo_name}
+              errorMessage={errors.logo_name?.message}
+              placeholder="Logo Name"
+              {...register("logo_name")}
+            />
+          </div>
           <div className="flex w-full space-x-3">
             <div className="w-1/2">
               <Input
@@ -141,6 +157,7 @@ const LogoGenerator = () => {
           </Button>
         </form>
       </div>
+      <div>{logo && <LogoGenerationResults logo={logo} />}</div>
     </div>
   );
 };

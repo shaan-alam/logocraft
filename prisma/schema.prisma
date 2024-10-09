@@ -17,7 +17,7 @@ datasource db {
 model Logo {
   id        String   @id @default(uuid())
   name      String
-  logoURLs   String[]
+  logoURLs  String[]
   userId    String
   createdAt DateTime @default(now())
 }

@@ -10,6 +10,10 @@ import * as z from "zod";
 import { createNewLogoAction } from "@/actions/logo.action";
 import { useServerActionMutation } from "@/hooks/server-action-hooks";
 
+type CreateNewLogoFormProps = {
+  closeModal: () => void;
+};
+
 const formSchema = z.object({
   logoName: z.string().min(3, {
     message: "Logo name must be at least 3 characters.",
@@ -18,13 +22,14 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const CreateNewLogoForm = () => {
+const CreateNewLogoForm = ({ closeModal}: CreateNewLogoFormProps) => {
   const router = useRouter();
 
   const { mutate: createLogo, isPending } = useServerActionMutation(
     createNewLogoAction,
     {
       onSuccess: (logo) => {
+        closeModal();
         router.push(`/dashboard/logo/${logo.id}`);
       },
     }
@@ -42,7 +47,6 @@ const CreateNewLogoForm = () => {
   });
 
   function onSubmit(values: FormValues) {
-    console.log(values);
     createLogo({ name: values.logoName });
   }
 

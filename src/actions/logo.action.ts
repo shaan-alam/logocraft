@@ -56,7 +56,7 @@ export const generateLogosAction = authedProcedure
 
     const generation = await ctx.db.logo.create({
       data: {
-        name,
+        name: name || "",
         logoURLs: data.map((logo) => logo.imageURL),
         userId: ctx.user.id,
       },

@@ -23,13 +23,13 @@ const CreateNewLogoModal = () => {
       </Button>
       <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          {() => (
+          {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
                 New Logo 🚀
               </ModalHeader>
               <ModalBody>
-                <CreateNewLogoForm />
+                <CreateNewLogoForm closeModal={onClose} />
               </ModalBody>
             </>
           )}
