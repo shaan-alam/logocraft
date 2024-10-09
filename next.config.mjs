@@ -10,7 +10,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "image.pollinations.ai",
+        hostname: "lh3.googleusercontent.com",
         protocol: "https",
         port: "",
         pathname: "/**",
