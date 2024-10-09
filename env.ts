@@ -16,6 +16,7 @@ export const env = createEnv({
     KINDE_SITE_URL: z.string(),
     KINDE_POST_LOGOUT_REDIRECT_URL: z.string(),
     KINDE_POST_LOGIN_REDIRECT_URL: z.string(),
+    API_BASE_URL: z.string()
   },
   /*
    * Environment variables available on the client (and server).
@@ -38,5 +39,6 @@ export const env = createEnv({
     KINDE_SITE_URL: process.env.KINDE_SITE_URL,
     KINDE_POST_LOGOUT_REDIRECT_URL: process.env.KINDE_POST_LOGOUT_REDIRECT_URL,
     KINDE_POST_LOGIN_REDIRECT_URL: process.env.KINDE_POST_LOGIN_REDIRECT_URL,
+    API_BASE_URL: process.env.API_BASE_URL
   },
 });
