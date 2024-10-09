@@ -4,14 +4,15 @@ import Image from "next/image";
 
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import {
-  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
 
-export default function App() {
+import CreateNewLogoModal from "../logo/create-new-logo-modal";
+
+const NavbarComponent = () => {
   const data = useKindeBrowserClient();
 
   return (
@@ -21,13 +22,13 @@ export default function App() {
           <Image
             src="/logocraft.png"
             height={100}
-            width={300}
+            width={200}
             alt="LogoCraft"
           />
         </NavbarBrand>
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button color="primary">Create Logo</Button>
+            <CreateNewLogoModal />
           </NavbarItem>
           <NavbarItem>
             {data?.user?.picture && (
@@ -44,4 +45,6 @@ export default function App() {
       </div>
     </Navbar>
   );
-}
+};
+
+export default NavbarComponent;

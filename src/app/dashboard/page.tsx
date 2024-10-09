@@ -1,7 +1,5 @@
 import Dashboard from "@/components/dashboard";
 
-const DashboardPage = () => {
+export default async function DashboardPage() {
   return <Dashboard />;
-};
-
-export default DashboardPage;
+}
