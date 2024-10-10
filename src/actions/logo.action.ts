@@ -6,8 +6,6 @@ import { z } from "zod";
 import { env } from "../../env";
 import { authedProcedure, publicProcedure } from "./procedures.action";
 
-export const dynamic = "force-dynamic";
-
 type APIResponse = {
   data: {
     key: string;
