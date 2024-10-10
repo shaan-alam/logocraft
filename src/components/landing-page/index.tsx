@@ -18,6 +18,24 @@ export default function LandingPage() {
             hassle-free. Say goodbye to costly, time-intensive design processes!
           </p>
 
+          <ul>
+            <li className="mb-1 text-default-600">
+              ✨ Describe your logo vision, get it instantly
+            </li>
+            <li className="mb-1 text-default-600">
+              🎨 Craft one-of-a-kind logos for your brand
+            </li>
+            <li className="mb-1 text-default-600">
+              🎯 Choose from 10+ unique styles and vibrant color schemes
+            </li>
+            <li className="mb-1 text-default-600">
+              🌟 Easily extract and apply your logo&apos;s color palette
+            </li>
+            <li className="mb-4 text-default-600">
+              🚀 Enjoy free logo generation for now—pricing will be introduced
+              soon!
+            </li>
+          </ul>
           <LoginLink>
             <Button variant="shadow" color="primary" disableRipple>
               Start Creating
