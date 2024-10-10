@@ -80,16 +80,16 @@ const LogoGenerator = () => {
 
   return (
     <motion.div
-      className="mx-auto w-1/2"
+      className="mx-auto w-full px-4 md:w-3/4 lg:w-1/2"
       initial={{ opacity: 0, filter: "blur(10px)" }}
       animate={{ opacity: 1, filter: "blur(0)" }}
       transition={{ duration: 0.4 }}
     >
       <div id="form" className="w-full">
-        <h1 className="mb-2 text-xl font-medium text-primary">
+        <h1 className="mb-2 text-xl font-medium text-primary md:text-2xl">
           Create Your Unique Logo with AI
         </h1>
-        <p className="mb-6 text-default-400">
+        <p className="text-muted-foreground mb-6 text-sm md:text-base">
           Fill in the details below, and let AI craft a professional and
           personalized logo for your brand in seconds!
         </p>
@@ -104,8 +104,8 @@ const LogoGenerator = () => {
               {...register("logo_name")}
             />
           </div>
-          <div className="flex w-full space-x-3">
-            <div className="w-1/2">
+          <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-3 md:space-y-0">
+            <div className="w-full md:w-1/2">
               <Input
                 size="lg"
                 label="Brand Name"
@@ -115,7 +115,7 @@ const LogoGenerator = () => {
                 {...register("brand_name")}
               />
             </div>
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <LogoBrandIdentitySelector
                 onChangeValue={(value) => setValue("brand_identity", value)}
               />
@@ -146,17 +146,21 @@ const LogoGenerator = () => {
             />
           </div>
           {watch("color_scheme") === "Custom" && (
-            <div className="flex space-x-3">
-              <div className="w-1/2">
-                <h1 className="mb-4 text-default-700">Primary Color:</h1>
+            <div className="flex flex-col space-y-4 md:flex-row md:space-x-3 md:space-y-0">
+              <div className="w-full md:w-1/2">
+                <h1 className="text-muted-foreground mb-4 text-sm md:text-base">
+                  Primary Color:
+                </h1>
                 <TwitterPicker
                   triangle="hide"
                   color={primaryColor}
                   onChange={(color) => setPrimaryColor(color.hex)}
                 />
               </div>
-              <div className="w-1/2">
-                <h1 className="mb-4 text-default-700">Secondary Color:</h1>
+              <div className="w-full md:w-1/2">
+                <h1 className="text-muted-foreground mb-4 text-sm md:text-base">
+                  Secondary Color:
+                </h1>
                 <TwitterPicker
                   triangle="hide"
                   color={secondaryColor}
@@ -175,7 +179,7 @@ const LogoGenerator = () => {
           <div className="flex items-center space-x-4">
             <label
               htmlFor="visibility-switch"
-              className="flex items-center space-x-1 text-default-700"
+              className="text-muted-foreground flex items-center space-x-1 text-sm md:text-base"
             >
               <span>Keep it public</span>
 
@@ -184,7 +188,7 @@ const LogoGenerator = () => {
                 content="Your logo will be visible on the Landing Page on Wall of Logos section"
                 className="rounded-full p-1"
               >
-                <IconHelp className="h-6 w-6 text-default-500" />
+                <IconHelp className="text-muted-foreground h-5 w-5 md:h-6 md:w-6" />
               </Tooltip>
             </label>
             <Switch id="visibility-switch" {...register("isPublic")} />

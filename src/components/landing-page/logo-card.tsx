@@ -11,13 +11,7 @@ type LogoCardProps = {
 const LogoCard = ({ logo }: LogoCardProps) => {
   return (
     <Card isFooterBlurred radius="lg" className="border-none">
-      <Image
-        alt={logo.name}
-        className="object-cover"
-        height={400}
-        src={logo.logoURLs[0]}
-        width={400}
-      />
+      <Image alt={logo.name} className="object-cover" src={logo.logoURLs[0]} />
       <CardFooter className="absolute bottom-1 z-10 ml-1 w-[calc(100%_-_8px)] overflow-hidden rounded-large border-1 border-white/20 py-1 shadow-small before:rounded-xl before:bg-white/10">
         <div className="flex items-center space-x-2">
           <span className="text-sm text-default-200">Created by</span>

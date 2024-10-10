@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import { IconDownload } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
@@ -18,19 +17,23 @@ const GeneratedLogo = ({ logoURL, name }: GeneratedLogoProps) => {
       animate={{ opacity: 1, filter: "blur(0)", scale: 1 }}
       transition={{ duration: 0.4 }}
     >
-      <span
-        className="absolute right-4 top-4 flex cursor-pointer items-center justify-center rounded-md bg-white p-1 text-default-600 transition-transform hover:scale-105"
-        onClick={() => downloadLogo(logoURL, `${name}-Logo.png`)}
-      >
-        <IconDownload />
-      </span>
-      <Image
-        src={logoURL}
-        alt={name}
-        width={300}
-        height={300}
-        className="rounded-md"
-      />
+      <Card isFooterBlurred radius="lg" className="border-none">
+        <Image alt={name} className="object-cover" src={logoURL} />
+        <CardFooter className="absolute bottom-1 z-10 ml-1 w-[calc(100%_-_8px)] overflow-hidden rounded-large border-1 border-white/20 py-1 shadow-small before:rounded-xl before:bg-white/10">
+          <Button
+            className="ml-auto bg-black/20 text-tiny text-white"
+            variant="flat"
+            color="default"
+            radius="lg"
+            size="sm"
+            disableRipple
+            onClick={() => downloadLogo(logoURL, `${name}-Logo.png`)}
+          >
+            <IconDownload className="h-4 w-4" />
+            Download
+          </Button>
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 };
