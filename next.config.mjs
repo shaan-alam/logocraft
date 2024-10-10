@@ -10,7 +10,25 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "image.pollinations.ai",
+        hostname: "lh3.googleusercontent.com",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        hostname: "replicate.delivery",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        hostname: "pbs.twimg.com",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        hostname: "utfs.io",
         protocol: "https",
         port: "",
         pathname: "/**",
