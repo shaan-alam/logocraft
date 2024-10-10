@@ -4,7 +4,9 @@ import {
   setupServerActionHooks,
 } from "zsa-react-query";
 
-export const QueryKeyFactory = createServerActionsKeyFactory({});
+export const QueryKeyFactory = createServerActionsKeyFactory({
+  getWallOfLogos: () => ["get-wall-of-logos"],
+});
 
 const {
   useServerActionQuery,

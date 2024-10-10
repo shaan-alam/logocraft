@@ -4,7 +4,7 @@ import axios from "axios";
 import { z } from "zod";
 
 import { env } from "../../env";
-import { authedProcedure } from "./procedures.action";
+import { authedProcedure, publicProcedure } from "./procedures.action";
 
 type APIResponse = {
   data: {
@@ -68,4 +68,20 @@ export const generateLogosAction = authedProcedure
     });
 
     return generation;
+  });
+
+export const getWallOfLogos = publicProcedure
+  .createServerAction()
+  .handler(async ({ ctx }) => {
+    const logos = await ctx.db.logo.findMany({
+      include: {
+        user: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 30,
+    });
+
+    return logos;
   });

@@ -5,6 +5,8 @@ import { Button } from "@nextui-org/react";
 import { Player } from "video-react";
 import "video-react/styles/scss/video-react.scss";
 
+import WallOfLogos from "./wall-of-logos";
+
 export default function LandingPage() {
   return (
     <>
@@ -49,6 +51,7 @@ export default function LandingPage() {
           />
         </div>
       </main>
+      <WallOfLogos />
     </>
   );
 }
