@@ -1,16 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import {
+  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
+import { IconPlus } from "@tabler/icons-react";
 
-import CreateNewLogoModal from "../logo/create-new-logo-modal";
+import UserAvatar from "./user-avatar";
 
 const NavbarComponent = () => {
   const data = useKindeBrowserClient();
@@ -19,27 +22,28 @@ const NavbarComponent = () => {
     <Navbar className="mx-auto bg-white p-2" maxWidth="full">
       <div className="container mx-auto flex items-center">
         <NavbarBrand>
-          <Image
-            src="/logocraft.png"
-            height={100}
-            width={200}
-            alt="LogoCraft"
-          />
+          <Link href="/">
+            <Image
+              src="/logocraft.png"
+              height={100}
+              width={200}
+              alt="LogoCraft"
+            />
+          </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
           <NavbarItem>
-            <CreateNewLogoModal />
+            {data.user && (
+              <Link href="/logo/new">
+                <Button color="primary" disableRipple>
+                  <IconPlus className="h-4 w-4" />
+                  Create New Logo
+                </Button>
+              </Link>
+            )}
           </NavbarItem>
           <NavbarItem>
-            {data?.user?.picture && (
-              <Image
-                src={data.user?.picture ?? "/logocraft.png"}
-                height={40}
-                width={40}
-                alt={data.user.given_name as string}
-                className="rounded-full ring-2 ring-primary ring-offset-2"
-              />
-            )}
+            {data?.user && <UserAvatar user={data.user} />}
           </NavbarItem>
         </NavbarContent>
       </div>

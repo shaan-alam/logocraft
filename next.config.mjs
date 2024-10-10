@@ -21,6 +21,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        hostname: "pbs.twimg.com",
+        protocol: "https",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

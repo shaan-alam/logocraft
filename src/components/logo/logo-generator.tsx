@@ -79,6 +79,8 @@ const LogoGenerator = () => {
       transition={{ duration: 0.4 }}
     >
       <div id="form" className="w-full">
+        <h1 className="text-primary font-medium text-xl mb-2">Create Your Unique Logo with AI</h1>
+        <p className="text-default-400 mb-6">Fill in the details below, and let AI craft a professional and personalized logo for your brand in seconds!</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Input
