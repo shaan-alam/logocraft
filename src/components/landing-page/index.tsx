@@ -44,7 +44,7 @@ export default function LandingPage() {
         </div>
         <div className="flex h-full w-1/2 items-center">
           <Player
-            src="https://utfs.io/f/4HrWTRZRvKfTYonh0w3yRK7IoaJmUPlSqnVfiZt2dFgHBpwz"
+            src="https://utfs.io/f/4HrWTRZRvKfTywDmxrluea5qw0p1nU82diECQ36vfLrKtTkW"
             poster="https://utfs.io/f/4HrWTRZRvKfTvCjFd3020XYgS7jkN8zTsJGcpnOF9KqLexaE"
           />
         </div>
