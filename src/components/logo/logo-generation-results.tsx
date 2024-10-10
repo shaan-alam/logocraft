@@ -1,7 +1,6 @@
 "use client";
 
 import { Logo } from "@prisma/client";
-import "react-multi-carousel/lib/styles.css";
 
 import GeneratedLogo from "./generated-logo";
 
