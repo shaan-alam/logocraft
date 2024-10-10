@@ -1,12 +1,10 @@
 "use client";
 
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { Button } from "@nextui-org/react";
 import { Player } from "video-react";
 import "video-react/styles/scss/video-react.scss";
 
-import Footer from "./footer";
 import WallOfLogos from "./wall-of-logos";
 
 export default function LandingPage() {
@@ -14,7 +12,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <main className="container mx-auto flex flex-col bg-white px-4 py-8 md:py-12 lg:flex-row lg:items-center lg:justify-between lg:space-x-12 lg:py-16 lg:h-[90vh]">
+      <main className="container mx-auto flex flex-col bg-white px-4 py-8 md:py-12 lg:h-[90vh] lg:flex-row lg:items-center lg:justify-between lg:space-x-12 lg:py-16">
         <div className="mb-8 w-full lg:mb-0 lg:w-1/2">
           <h1 className="mb-4 text-3xl font-semibold leading-tight md:text-4xl lg:text-5xl">
             Design Stunning Logos Instantly with AI
@@ -68,7 +66,6 @@ export default function LandingPage() {
         </div>
       </main>
       <WallOfLogos />
-      <Footer />
     </>
   );
 }
