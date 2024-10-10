@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "@nextui-org/react";
+import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -71,7 +72,12 @@ const LogoGenerator = () => {
   };
 
   return (
-    <div className="mx-auto w-1/2">
+    <motion.div
+      className="mx-auto w-1/2"
+      initial={{ opacity: 0, filter: "blur(10px)" }}
+      animate={{ opacity: 1, filter: "blur(0)" }}
+      transition={{ duration: 0.4 }}
+    >
       <div id="form" className="w-full">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -158,7 +164,7 @@ const LogoGenerator = () => {
         </form>
       </div>
       <div>{logo && <LogoGenerationResults logo={logo} />}</div>
-    </div>
+    </motion.div>
   );
 };
 
