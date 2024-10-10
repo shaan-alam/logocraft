@@ -74,6 +74,9 @@ export const getWallOfLogos = publicProcedure
   .createServerAction()
   .handler(async ({ ctx }) => {
     const logos = await ctx.db.logo.findMany({
+      where: {
+        isPublic: true,
+      },
       include: {
         user: true,
       },
