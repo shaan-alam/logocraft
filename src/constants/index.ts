@@ -124,69 +124,69 @@ export const styles = [
 
 export const colors = [
   {
-    "name": "Trust & Professionalism",
-    "colors": ["Navy Blue", "Light Gray", "White"],
-    "psychology": "Trust, security, simplicity.",
-    "hex": ["#001f3f", "#d3d3d3", "#ffffff"]
+    name: "Trust & Professionalism",
+    colors: ["Navy Blue", "Light Gray", "White"],
+    psychology: "Trust, security, simplicity.",
+    hex: ["#001f3f", "#d3d3d3", "#ffffff"],
   },
   {
-    "name": "Energy & Optimism",
-    "colors": ["Bright Yellow", "Orange", "Warm Red"],
-    "psychology": "Energy, happiness, passion.",
-    "hex": ["#ffdd00", "#ff851b", "#ff4136"]
+    name: "Energy & Optimism",
+    colors: ["Bright Yellow", "Orange", "Warm Red"],
+    psychology: "Energy, happiness, passion.",
+    hex: ["#ffdd00", "#ff851b", "#ff4136"],
   },
   {
-    "name": "Luxury & Elegance",
-    "colors": ["Black", "Gold", "Dark Purple"],
-    "psychology": "Sophistication, wealth, royalty.",
-    "hex": ["#000000", "#ffd700", "#4b0082"]
+    name: "Luxury & Elegance",
+    colors: ["Black", "Gold", "Dark Purple"],
+    psychology: "Sophistication, wealth, royalty.",
+    hex: ["#000000", "#ffd700", "#4b0082"],
   },
   {
-    "name": "Nature & Sustainability",
-    "colors": ["Forest Green", "Brown", "Soft Beige"],
-    "psychology": "Nature, growth, calm.",
-    "hex": ["#228b22", "#8b4513", "#f5f5dc"]
+    name: "Nature & Sustainability",
+    colors: ["Forest Green", "Brown", "Soft Beige"],
+    psychology: "Nature, growth, calm.",
+    hex: ["#228b22", "#8b4513", "#f5f5dc"],
   },
   {
-    "name": "Innovation & Technology",
-    "colors": ["Electric Blue", "Dark Gray", "Silver"],
-    "psychology": "Innovation, modernity, tech.",
-    "hex": ["#0074d9", "#333333", "#c0c0c0"]
+    name: "Innovation & Technology",
+    colors: ["Electric Blue", "Dark Gray", "Silver"],
+    psychology: "Innovation, modernity, tech.",
+    hex: ["#0074d9", "#333333", "#c0c0c0"],
   },
   {
-    "name": "Calm & Wellness",
-    "colors": ["Soft Blue", "Mint Green", "Light Gray"],
-    "psychology": "Calm, wellness, serenity.",
-    "hex": ["#87ceeb", "#98ff98", "#d3d3d3"]
+    name: "Calm & Wellness",
+    colors: ["Soft Blue", "Mint Green", "Light Gray"],
+    psychology: "Calm, wellness, serenity.",
+    hex: ["#87ceeb", "#98ff98", "#d3d3d3"],
   },
   {
-    "name": "Creative & Bold",
-    "colors": ["Magenta", "Teal", "Mustard Yellow"],
-    "psychology": "Creativity, balance, energy.",
-    "hex": ["#ff00ff", "#008080", "#ffdb58"]
+    name: "Creative & Bold",
+    colors: ["Magenta", "Teal", "Mustard Yellow"],
+    psychology: "Creativity, balance, energy.",
+    hex: ["#ff00ff", "#008080", "#ffdb58"],
   },
   {
-    "name": "Playful & Youthful",
-    "colors": ["Bright Pink", "Aqua", "Lemon Yellow"],
-    "psychology": "Fun, youth, playfulness.",
-    "hex": ["#ff69b4", "#7fdbff", "#fff700"]
+    name: "Playful & Youthful",
+    colors: ["Bright Pink", "Aqua", "Lemon Yellow"],
+    psychology: "Fun, youth, playfulness.",
+    hex: ["#ff69b4", "#7fdbff", "#fff700"],
   },
   {
-    "name": "Warmth & Comfort",
-    "colors": ["Soft Peach", "Warm Beige", "Light Coral"],
-    "psychology": "Warmth, comfort, friendliness.",
-    "hex": ["#ffe5b4", "#f5deb3", "#f08080"]
+    name: "Warmth & Comfort",
+    colors: ["Soft Peach", "Warm Beige", "Light Coral"],
+    psychology: "Warmth, comfort, friendliness.",
+    hex: ["#ffe5b4", "#f5deb3", "#f08080"],
   },
   {
-    "name": "Bold & Strong",
-    "colors": ["Deep Red", "Charcoal Gray", "Bright White"],
-    "psychology": "Power, strength, clarity.",
-    "hex": ["#8b0000", "#36454f", "#ffffff"]
+    name: "Bold & Strong",
+    colors: ["Deep Red", "Charcoal Gray", "Bright White"],
+    psychology: "Power, strength, clarity.",
+    hex: ["#8b0000", "#36454f", "#ffffff"],
   },
   {
-    "name": "Custom",
-    "colors": ["Deep Red", "Charcoal Gray", "Bright White"],
-    "psychology": "Use your own colors.",
-    "hex": ["#ff1bff", "#118380", "#fff3df"]
-  }
-]
+    name: "Custom",
+    colors: ["Deep Red", "Charcoal Gray", "Bright White"],
+    psychology: "Use your own colors.",
+    hex: ["#ff1bff", "#118380", "#fff3df"],
+  },
+];

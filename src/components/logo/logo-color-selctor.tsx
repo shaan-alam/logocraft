@@ -43,10 +43,10 @@ const LogoColorSelector = ({ onChangeValue }: LogoColorSelector) => {
         const value = e.target.value;
 
         const color = colors.find((color) => color.name === value);
-        if (color?.name !== 'Custom') {
+        if (color?.name !== "Custom") {
           onChangeValue(color?.hex.join(",") as string);
         } else {
-          onChangeValue('Custom');
+          onChangeValue("Custom");
         }
       }}
     >
