@@ -44,14 +44,18 @@ export const generateLogosAction = authedProcedure
         industry: z.string().min(1),
         logo_style: z.string().min(1),
         color_scheme: z.string().min(1),
+        custom_prompt: z.string().optional(),
+        isPublic: z.boolean().default(false),
       }),
     })
   )
   .handler(async ({ ctx, input }) => {
     const { name, config } = input;
 
+    const { isPublic, ...apiBody } = config;
+
     const { data } = await axios.post<unknown, APIResponse>(env.API_BASE_URL, {
-      ...config,
+      ...apiBody,
     });
 
     const generation = await ctx.db.logo.create({
@@ -59,6 +63,7 @@ export const generateLogosAction = authedProcedure
         name: name || "",
         logoURLs: data.map((logo) => logo.imageURL),
         userId: ctx.user.id,
+        isPublic,
       },
     });
 

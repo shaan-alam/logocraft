@@ -20,4 +20,5 @@ model Logo {
   logoURLs  String[]
   userId    String
   createdAt DateTime @default(now())
+  isPublic  Boolean  @default(false)
 }

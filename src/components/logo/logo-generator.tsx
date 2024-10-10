@@ -3,7 +3,8 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Switch, Textarea, Tooltip } from "@nextui-org/react";
+import { IconHelp } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
@@ -25,6 +26,8 @@ export const formSchema = z.object({
   industry: z.string().min(1),
   logo_style: z.string().min(1),
   color_scheme: z.string().min(1),
+  custom_prompt: z.string().optional(),
+  isPublic: z.boolean().default(false),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -55,6 +58,8 @@ const LogoGenerator = () => {
       industry: "",
       logo_style: "",
       color_scheme: "",
+      custom_prompt: "",
+      isPublic: false,
     },
   });
 
@@ -66,6 +71,8 @@ const LogoGenerator = () => {
           ? [primaryColor, secondaryColor].join(",")
           : data.color_scheme,
       industry: data.industry === "Other" ? industry : data.industry,
+      custom_prompt: data.custom_prompt,
+      isPublic: data.isPublic,
     };
 
     generateLogos({ name: data.logo_name, config: body });
@@ -79,8 +86,13 @@ const LogoGenerator = () => {
       transition={{ duration: 0.4 }}
     >
       <div id="form" className="w-full">
-        <h1 className="text-primary font-medium text-xl mb-2">Create Your Unique Logo with AI</h1>
-        <p className="text-default-400 mb-6">Fill in the details below, and let AI craft a professional and personalized logo for your brand in seconds!</p>
+        <h1 className="mb-2 text-xl font-medium text-primary">
+          Create Your Unique Logo with AI
+        </h1>
+        <p className="mb-6 text-default-400">
+          Fill in the details below, and let AI craft a professional and
+          personalized logo for your brand in seconds!
+        </p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Input
@@ -153,6 +165,30 @@ const LogoGenerator = () => {
               </div>
             </div>
           )}
+          <div>
+            <Textarea
+              label="Custom Prompt (Optional)"
+              placeholder="Enter your custom prompt here"
+              {...register("custom_prompt")}
+            />
+          </div>
+          <div className="flex items-center space-x-4">
+            <label
+              htmlFor="visibility-switch"
+              className="flex items-center space-x-1 text-default-700"
+            >
+              <span>Keep it public</span>
+
+              <Tooltip
+                showArrow={true}
+                content="Your logo will be visible on the Landing Page on Wall of Logos section"
+                className="rounded-full p-1"
+              >
+                <IconHelp className="h-6 w-6 text-default-500" />
+              </Tooltip>
+            </label>
+            <Switch id="visibility-switch" {...register("isPublic")} />
+          </div>
 
           <Button
             color="primary"
