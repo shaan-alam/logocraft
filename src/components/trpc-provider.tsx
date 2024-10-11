@@ -7,6 +7,7 @@ import { getFetch, httpBatchLink, loggerLink } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import { trpc } from "@/utils/trpc";
+import { env } from "../../env";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,8 +19,8 @@ const queryClient = new QueryClient({
 
 export const TrpcProvider = ({ children }: { children: React.ReactNode }) => {
   const url =
-    process.env.NEXT_PUBLIC_APP_DOMAIN &&
-    !process.env.NEXT_PUBLIC_APP_DOMAIN.includes("localhost")
+    env.NEXT_PUBLIC_APP_DOMAIN &&
+    !env.NEXT_PUBLIC_APP_DOMAIN.includes("localhost")
       ? `https://www.${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/trpc/`
       : "http://localhost:3000/api/trpc/";
 
