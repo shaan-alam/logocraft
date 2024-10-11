@@ -32,10 +32,7 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.5.3",
     "video-react": "^0.16.0",
-    "zod": "^3.23.8",
-    "zsa": "^0.6.0",
-    "zsa-react": "^0.2.3",
-    "zsa-react-query": "^0.2.1"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
