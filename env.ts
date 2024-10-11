@@ -39,6 +39,6 @@ export const env = createEnv({
     KINDE_SITE_URL: process.env.KINDE_SITE_URL,
     KINDE_POST_LOGOUT_REDIRECT_URL: process.env.KINDE_POST_LOGOUT_REDIRECT_URL,
     KINDE_POST_LOGIN_REDIRECT_URL: process.env.KINDE_POST_LOGIN_REDIRECT_URL,
-    API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    API_BASE_URL: process.env.API_BASE_URL,
   },
 });
