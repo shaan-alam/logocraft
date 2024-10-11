@@ -1,5 +1,5 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { TRPCError } from "@trpc/server";
+import { TRPCError, inferAsyncReturnType } from "@trpc/server";
 
 import { db } from "@/db";
 
@@ -16,7 +16,7 @@ export const createContext = async () => {
 
     const ctx = { user, db };
     return ctx;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     throw new TRPCError({
       code: "UNAUTHORIZED",
@@ -25,4 +25,4 @@ export const createContext = async () => {
   }
 };
 
-export type Context = typeof createContext;
+export type Context = inferAsyncReturnType<typeof createContext>;

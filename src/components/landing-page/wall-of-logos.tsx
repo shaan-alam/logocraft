@@ -1,16 +1,12 @@
 "use client";
 
-import { getWallOfLogos } from "@/actions/logo.action";
-import { useServerActionQuery } from "@/hooks/server-action-hooks";
+import { trpc } from "@/utils/trpc";
 
 import LogoCard from "./logo-card";
 import LogoSkeletonCard from "./logo-skeleton-card";
 
 const WallOfLogos = () => {
-  const { isLoading, data: logos } = useServerActionQuery(getWallOfLogos, {
-    queryKey: ["get-wall-of-logos"],
-    input: undefined,
-  });
+  const { isLoading, data: logos } = trpc.getWallOfLogos.useQuery();
 
   return (
     <div className="container mx-auto px-4 py-8 text-center">
@@ -27,7 +23,7 @@ const WallOfLogos = () => {
           ))}
         </div>
       )}
-      <div className="xs:grid-cols-1 mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 xs:grid-cols-1 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
         {!isLoading &&
           logos &&
           logos.map((logo) => (

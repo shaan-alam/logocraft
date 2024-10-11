@@ -29,7 +29,7 @@ export const helloRouter = router({
         }),
       })
     )
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async ({ ctx, input }) => {
       const { name, config } = input;
 
       const { isPublic, ...apiBody } = config;
@@ -52,6 +52,19 @@ export const helloRouter = router({
 
       return generation;
     }),
+  getWallOfLogos: publicProcedure.query(async ({ ctx }) => {
+    const logos = await ctx.db.logo.findMany({
+      where: {
+        isPublic: true,
+      },
+      include: {
+        user: true,
+      },
+      take: 30,
+    });
+
+    return logos;
+  }),
 });
 
 export const appRouter = mergeRouters(helloRouter);
