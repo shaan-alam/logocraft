@@ -10,14 +10,13 @@ import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { generateLogosAction } from "@/actions/logo.action";
-import { useServerActionMutation } from "@/hooks/server-action-hooks";
+import { trpc } from "@/utils/trpc";
 
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
-import LogoGenerationResults from "./logo-generation-results";
 import LogoIndustrySelector from "./logo-industry-selector";
 import LogoStyleSelector from "./logo-style-selector";
+import LogoGenerationResults from "./logo-generation-results";
 
 export const formSchema = z.object({
   logo_name: z.string().min(1, { message: "Name cannot be empty" }),
@@ -37,11 +36,23 @@ const LogoGenerator = () => {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
 
+  // const { isPending, mutate: generateLogos } = useMutation({
+  //   mutationFn: async (payload: APIPayload) => {
+  //     try {
+  //       console.log("sdfa");
+  //       const data = await createLogos(payload);
+  //       return data;
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   },
+  // });
+
   const {
-    mutate: generateLogos,
-    isPending,
     data: logo,
-  } = useServerActionMutation(generateLogosAction);
+    mutate: generateLogos,
+    isLoading,
+  } = trpc.generateLogos.useMutation();
 
   const {
     setValue,
@@ -64,18 +75,27 @@ const LogoGenerator = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    const body: FormValues = {
-      ...data,
-      color_scheme:
-        data.color_scheme === "Custom"
-          ? [primaryColor, secondaryColor].join(",")
-          : data.color_scheme,
-      industry: data.industry === "Other" ? industry : data.industry,
-      custom_prompt: data.custom_prompt,
-      isPublic: data.isPublic,
-    };
+    // const body: FormValues = {
+    //   ...data,
+    //   color_scheme:
+    //     data.color_scheme === "Custom"
+    //       ? [primaryColor, secondaryColor].join(",")
+    //       : data.color_scheme,
+    //   industry: data.industry === "Other" ? industry : data.industry,
+    //   custom_prompt: data.custom_prompt,
+    // };
 
-    generateLogos({ name: data.logo_name, config: body });
+    generateLogos({
+      name: data.logo_name,
+      config: {
+        brand_identity: data.brand_identity,
+        brand_name: data.logo_name,
+        color_scheme: data.color_scheme,
+        custom_prompt: data.custom_prompt,
+        industry: data.industry,
+        logo_style: data.logo_style,
+      },
+    });
   };
 
   return (
@@ -197,7 +217,7 @@ const LogoGenerator = () => {
           <Button
             color="primary"
             type="submit"
-            isLoading={isPending}
+            isLoading={isLoading}
             disableRipple
             fullWidth
           >
@@ -205,7 +225,7 @@ const LogoGenerator = () => {
           </Button>
         </form>
       </div>
-      <div>{logo && <LogoGenerationResults logo={logo} />}</div>
+      <div className="my-12">{logo && <LogoGenerationResults logo={logo} />}</div>
     </motion.div>
   );
 };

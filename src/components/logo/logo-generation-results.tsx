@@ -10,7 +10,7 @@ type LogoGenerationResultsProps = {
 
 const LogoGenerationResults = ({ logo }: LogoGenerationResultsProps) => {
   return (
-    <div className="mt-6 w-full">
+    <div className="w-full">
       <h2 className="mb-4 text-center text-xl font-semibold md:text-2xl">
         Generated Logos
       </h2>

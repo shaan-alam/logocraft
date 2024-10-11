@@ -1,17 +1,14 @@
 "use client";
 
-import { useState } from "react";
-
 import { NextUIProvider } from "@nextui-org/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { TrpcProvider } from "./trpc-provider";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  const [client] = useState(new QueryClient());
-
   return (
-    <QueryClientProvider client={client}>
+    <TrpcProvider>
       <NextUIProvider>{children}</NextUIProvider>
-    </QueryClientProvider>
+    </TrpcProvider>
   );
 };
 

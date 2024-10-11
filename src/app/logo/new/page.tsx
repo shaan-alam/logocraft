@@ -11,7 +11,7 @@ export default async function DashboardPage() {
     return redirect("/");
   }
   return (
-    <div className="h-screen">
+    <div className="h-auto">
       <LogoGenerator />
     </div>
   );
