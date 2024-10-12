@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
 
 import { storage } from "@/utils/firebase";
 
@@ -12,7 +13,7 @@ export const uploadImageToFirebase = async (
     const response = await axios.get(url, { responseType: "arraybuffer" });
     const imageBlob = new Blob([response.data]);
 
-    const storageRef = ref(storage, `images/${userId}/${filename}.png`);
+    const storageRef = ref(storage, `images/${userId}/${filename}-${v4()}.png`);
 
     await uploadBytes(storageRef, imageBlob);
 

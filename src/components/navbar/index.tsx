@@ -22,11 +22,19 @@ const NavbarComponent = () => {
     <Navbar className="mx-auto bg-white p-2" maxWidth="full">
       <div className="container mx-auto flex items-center">
         <NavbarBrand>
-          <Link href="/">
+          <Link href="/" className="hidden md:block">
             <Image
               src="/logocraft.png"
               height={100}
               width={200}
+              alt="LogoCraft"
+            />
+          </Link>
+          <Link href="/" className="block md:hidden">
+            <Image
+              src="/logocraft-small.png"
+              height={50}
+              width={50}
               alt="LogoCraft"
             />
           </Link>
@@ -37,7 +45,7 @@ const NavbarComponent = () => {
               <Link href="/logo/new">
                 <Button color="primary" disableRipple>
                   <IconPlus className="h-4 w-4" />
-                  Create New Logo
+                  <span className="hidden sm:block">Create New Logo</span>
                 </Button>
               </Link>
             )}

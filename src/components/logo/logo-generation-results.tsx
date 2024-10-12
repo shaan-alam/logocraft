@@ -20,7 +20,8 @@ const LogoGenerationResults = ({ logos, name }: LogoGenerationResultsProps) => {
         {logos.map((logo, index) => (
           <GeneratedLogo
             key={`${logo.imageURL}-${index}`}
-            logoURL={logo.imageURL}
+            logo={logo}
+            isSaved={false}
             name={name}
           />
         ))}

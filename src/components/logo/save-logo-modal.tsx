@@ -32,7 +32,7 @@ const SaveLogoModal = ({
 }: SaveLogoModalProps) => {
   const [isPublic, setPublic] = useState(false);
 
-  const { mutateAsync: saveLogo } = useSaveLogo(); 
+  const { mutateAsync: saveLogo } = useSaveLogo();
 
   return (
     <>
@@ -86,12 +86,12 @@ const SaveLogoModal = ({
                       }),
                       {
                         loading: "Saving...",
-                        success: (data) => {
-                          onClose();
-                          return <>{data.name} Saved successfully!</>;
+                        success: () => {
+                          return <>Logo Saved successfully!</>;
                         },
                       }
                     );
+                    onClose();
                   }}
                 >
                   Save
