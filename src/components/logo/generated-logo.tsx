@@ -52,8 +52,6 @@ const GeneratedLogo = ({ name, logo, isSaved }: GeneratedLogoProps) => {
     onOpenChange: onDeleteOpenChange,
   } = useDisclosure();
 
-  console.log('issaved', isSaved)
-
   return (
     <motion.div
       className="relative flex flex-col items-center justify-center"
