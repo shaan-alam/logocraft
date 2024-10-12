@@ -7,6 +7,7 @@ import { getFetch, httpBatchLink, loggerLink } from "@trpc/react-query";
 import SuperJSON from "superjson";
 
 import { trpc } from "@/utils/trpc";
+
 import { env } from "../../env";
 
 const queryClient = new QueryClient({
@@ -36,7 +37,6 @@ export const TrpcProvider = ({ children }: { children: React.ReactNode }) => {
             const fetch = getFetch();
             return fetch(input, {
               ...init,
-              credentials: "include",
             });
           },
         }),

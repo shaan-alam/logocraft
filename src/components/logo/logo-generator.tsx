@@ -3,8 +3,17 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input, Switch, Textarea, Tooltip } from "@nextui-org/react";
+import {
+  Button,
+  Image,
+  Input,
+  Switch,
+  Textarea,
+  Tooltip,
+} from "@nextui-org/react";
 import { IconHelp } from "@tabler/icons-react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
@@ -12,11 +21,20 @@ import { z } from "zod";
 
 import { trpc } from "@/utils/trpc";
 
+import { env } from "../../../env";
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
 import LogoIndustrySelector from "./logo-industry-selector";
 import LogoStyleSelector from "./logo-style-selector";
-import LogoGenerationResults from "./logo-generation-results";
+
+export interface APIResponse {
+  data: {
+    data: {
+      key: number;
+      imageURL: string;
+    }[];
+  };
+}
 
 export const formSchema = z.object({
   logo_name: z.string().min(1, { message: "Name cannot be empty" }),
@@ -48,11 +66,54 @@ const LogoGenerator = () => {
   //   },
   // });
 
+  // const {
+
+  // } = trpc.generateLogos.useMutation();
+
+  const { data } = trpc.sayHello.useQuery();
+  console.log(data);
+
   const {
     data: logo,
     mutate: generateLogos,
     isLoading,
-  } = trpc.generateLogos.useMutation();
+  } = useMutation({
+    mutationFn: async (payload: Omit<FormValues, "logo_name" | "isPublic">) => {
+      const {
+        brand_identity,
+        brand_name,
+        color_scheme,
+        industry,
+        logo_style,
+        custom_prompt,
+      } = payload;
+
+      const { data } = await axios.post<unknown, APIResponse>(
+        env.NEXT_PUBLIC_API_BASE_URL,
+        {
+          brand_name,
+          brand_identity,
+          industry,
+          logo_style,
+          color_scheme,
+          custom_prompt,
+        }
+      );
+
+      console.log(data);
+
+      return data;
+
+      // const generation = await ctx.db.logo.create({
+      //   data: {
+      //     name: name || "",
+      //     logoURLs: data.map((logo) => logo.imageURL),
+      //     userId: ctx.user?.id as string,
+      //     isPublic,
+      //   },
+      // });
+    },
+  });
 
   const {
     setValue,
@@ -86,15 +147,12 @@ const LogoGenerator = () => {
     // };
 
     generateLogos({
-      name: data.logo_name,
-      config: {
-        brand_identity: data.brand_identity,
-        brand_name: data.logo_name,
-        color_scheme: data.color_scheme,
-        custom_prompt: data.custom_prompt,
-        industry: data.industry,
-        logo_style: data.logo_style,
-      },
+      brand_identity: data.brand_identity,
+      brand_name: data.logo_name,
+      color_scheme: data.color_scheme,
+      custom_prompt: data.custom_prompt,
+      industry: data.industry,
+      logo_style: data.logo_style,
     });
   };
 
@@ -225,7 +283,17 @@ const LogoGenerator = () => {
           </Button>
         </form>
       </div>
-      <div className="my-12">{logo && <LogoGenerationResults logo={logo} />}</div>
+      <div className="my-12">
+        {/* {logo && <LogoGenerationResults logo={logo} />} */}
+        {logo && (
+          <Image
+            src={logo.data[0].imageURL}
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+        )}
+      </div>
     </motion.div>
   );
 };

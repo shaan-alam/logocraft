@@ -16,7 +16,6 @@ export const env = createEnv({
     KINDE_SITE_URL: z.string(),
     KINDE_POST_LOGOUT_REDIRECT_URL: z.string(),
     KINDE_POST_LOGIN_REDIRECT_URL: z.string(),
-    API_BASE_URL: z.string(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -24,7 +23,9 @@ export const env = createEnv({
    * You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
   client: {
-    NEXT_PUBLIC_APP_DOMAIN: z.string()
+    NEXT_PUBLIC_APP_DOMAIN: z.string(),
+    NEXT_PUBLIC_API_BASE_URL: z.string(),
+
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -41,7 +42,7 @@ export const env = createEnv({
     KINDE_SITE_URL: process.env.KINDE_SITE_URL,
     KINDE_POST_LOGOUT_REDIRECT_URL: process.env.KINDE_POST_LOGOUT_REDIRECT_URL,
     KINDE_POST_LOGIN_REDIRECT_URL: process.env.KINDE_POST_LOGIN_REDIRECT_URL,
-    API_BASE_URL: process.env.API_BASE_URL,
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
     NEXT_PUBLIC_APP_DOMAIN: process.env.NEXT_PUBLIC_APP_DOMAIN
   },
 });

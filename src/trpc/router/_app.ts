@@ -1,19 +1,13 @@
-import axios from "axios";
 import { z } from "zod";
 
-import { env } from "../../../env";
 import { createContext } from "../context";
-import { publicProcedure } from "../procedure";
+import { authedProcedure, publicProcedure } from "../procedure";
 import { createCallerFactory, mergeRouters, router } from "../trpc";
 
-type APIResponse = {
-  data: {
-    key: string;
-    imageURL: string;
-  }[];
-};
-
 export const helloRouter = router({
+  sayHello: authedProcedure.query(async () => {
+    return "hello";
+  }),
   generateLogos: publicProcedure
     .input(
       z.object({
@@ -29,28 +23,8 @@ export const helloRouter = router({
         }),
       })
     )
-    .mutation(async ({ ctx, input }) => {
-      const { name, config } = input;
-
-      const { isPublic, ...apiBody } = config;
-
-      const { data } = await axios.post<unknown, APIResponse>(
-        env.API_BASE_URL,
-        {
-          ...apiBody,
-        }
-      );
-
-      const generation = await ctx.db.logo.create({
-        data: {
-          name: name || "",
-          logoURLs: data.map((logo) => logo.imageURL),
-          userId: ctx.user?.id as string,
-          isPublic,
-        },
-      });
-
-      return generation;
+    .mutation(async ({}) => {
+      return "hello";
     }),
   getWallOfLogos: publicProcedure.query(async ({ ctx }) => {
     const logos = await ctx.db.logo.findMany({
