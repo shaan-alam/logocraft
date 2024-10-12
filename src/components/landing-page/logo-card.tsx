@@ -11,7 +11,7 @@ type LogoCardProps = {
 const LogoCard = ({ logo }: LogoCardProps) => {
   return (
     <Card isFooterBlurred radius="lg" className="border-none">
-      <Image alt={logo.name} className="object-cover" src={logo.logoURLs[0]} />
+      <Image alt={logo.name} src={logo.logoURL} className="h-full w-full" />
       <CardFooter className="absolute bottom-1 z-10 ml-1 w-[calc(100%_-_8px)] overflow-hidden rounded-large border-1 border-white/20 py-1 shadow-small before:rounded-xl before:bg-white/10">
         <div className="flex items-center space-x-2">
           <span className="text-sm text-default-200">Created by</span>
@@ -32,9 +32,7 @@ const LogoCard = ({ logo }: LogoCardProps) => {
           radius="lg"
           size="sm"
           disableRipple
-          onClick={() =>
-            downloadLogo(logo.logoURLs[0], `${logo.name}-Logo.png`)
-          }
+          onClick={() => downloadLogo(logo.logoURL, `${logo.name}-Logo.png`)}
         >
           <IconDownload className="h-4 w-4" />
           Download

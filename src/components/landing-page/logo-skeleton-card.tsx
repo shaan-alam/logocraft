@@ -2,13 +2,9 @@ import { Card, Skeleton } from "@nextui-org/react";
 
 const LogoSkeletonCard = () => {
   return (
-    <div className="my-8 flex grid-cols-4 gap-4">
+    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
       {new Array(4).fill(4).map((_, index) => (
-        <Card
-          className="h-[400px] w-[400px] space-y-5 p-4"
-          radius="lg"
-          key={index}
-        >
+        <Card className="h-[400px] space-y-5 p-4" radius="lg" key={index}>
           <Skeleton className="rounded-lg">
             <div className="h-[360px] rounded-lg bg-default-300"></div>
           </Skeleton>

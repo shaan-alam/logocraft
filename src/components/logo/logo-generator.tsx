@@ -3,38 +3,19 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Button,
-  Image,
-  Input,
-  Switch,
-  Textarea,
-  Tooltip,
-} from "@nextui-org/react";
-import { IconHelp } from "@tabler/icons-react";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { trpc } from "@/utils/trpc";
+import { useLogo } from "@/hooks/use-logo";
 
-import { env } from "../../../env";
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
+import LogoGenerationResults from "./logo-generation-results";
 import LogoIndustrySelector from "./logo-industry-selector";
 import LogoStyleSelector from "./logo-style-selector";
-
-export interface APIResponse {
-  data: {
-    data: {
-      key: number;
-      imageURL: string;
-    }[];
-  };
-}
 
 export const formSchema = z.object({
   logo_name: z.string().min(1, { message: "Name cannot be empty" }),
@@ -44,7 +25,6 @@ export const formSchema = z.object({
   logo_style: z.string().min(1),
   color_scheme: z.string().min(1),
   custom_prompt: z.string().optional(),
-  isPublic: z.boolean().default(false),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -54,68 +34,10 @@ const LogoGenerator = () => {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
 
-  // const { isPending, mutate: generateLogos } = useMutation({
-  //   mutationFn: async (payload: APIPayload) => {
-  //     try {
-  //       console.log("sdfa");
-  //       const data = await createLogos(payload);
-  //       return data;
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   },
-  // });
-
-  // const {
-
-  // } = trpc.generateLogos.useMutation();
-
-  const { data } = trpc.sayHello.useQuery();
-  console.log(data);
+  const { mutate: generateLogos, isLoading, data: logos } = useLogo();
 
   const {
-    data: logo,
-    mutate: generateLogos,
-    isLoading,
-  } = useMutation({
-    mutationFn: async (payload: Omit<FormValues, "logo_name" | "isPublic">) => {
-      const {
-        brand_identity,
-        brand_name,
-        color_scheme,
-        industry,
-        logo_style,
-        custom_prompt,
-      } = payload;
-
-      const { data } = await axios.post<unknown, APIResponse>(
-        env.NEXT_PUBLIC_API_BASE_URL,
-        {
-          brand_name,
-          brand_identity,
-          industry,
-          logo_style,
-          color_scheme,
-          custom_prompt,
-        }
-      );
-
-      console.log(data);
-
-      return data;
-
-      // const generation = await ctx.db.logo.create({
-      //   data: {
-      //     name: name || "",
-      //     logoURLs: data.map((logo) => logo.imageURL),
-      //     userId: ctx.user?.id as string,
-      //     isPublic,
-      //   },
-      // });
-    },
-  });
-
-  const {
+    getValues,
     setValue,
     register,
     watch,
@@ -131,22 +53,12 @@ const LogoGenerator = () => {
       logo_style: "",
       color_scheme: "",
       custom_prompt: "",
-      isPublic: false,
     },
   });
 
   const onSubmit = async (data: FormValues) => {
-    // const body: FormValues = {
-    //   ...data,
-    //   color_scheme:
-    //     data.color_scheme === "Custom"
-    //       ? [primaryColor, secondaryColor].join(",")
-    //       : data.color_scheme,
-    //   industry: data.industry === "Other" ? industry : data.industry,
-    //   custom_prompt: data.custom_prompt,
-    // };
-
     generateLogos({
+      name: data.logo_name,
       brand_identity: data.brand_identity,
       brand_name: data.logo_name,
       color_scheme: data.color_scheme,
@@ -254,24 +166,6 @@ const LogoGenerator = () => {
               {...register("custom_prompt")}
             />
           </div>
-          <div className="flex items-center space-x-4">
-            <label
-              htmlFor="visibility-switch"
-              className="text-muted-foreground flex items-center space-x-1 text-sm md:text-base"
-            >
-              <span>Keep it public</span>
-
-              <Tooltip
-                showArrow={true}
-                content="Your logo will be visible on the Landing Page on Wall of Logos section"
-                className="rounded-full p-1"
-              >
-                <IconHelp className="text-muted-foreground h-5 w-5 md:h-6 md:w-6" />
-              </Tooltip>
-            </label>
-            <Switch id="visibility-switch" {...register("isPublic")} />
-          </div>
-
           <Button
             color="primary"
             type="submit"
@@ -284,14 +178,8 @@ const LogoGenerator = () => {
         </form>
       </div>
       <div className="my-12">
-        {/* {logo && <LogoGenerationResults logo={logo} />} */}
-        {logo && (
-          <Image
-            src={logo.data[0].imageURL}
-            alt="Logo"
-            width={100}
-            height={100}
-          />
+        {logos && (
+          <LogoGenerationResults logos={logos} name={getValues().logo_name} />
         )}
       </div>
     </motion.div>
