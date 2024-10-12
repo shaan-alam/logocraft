@@ -70,7 +70,7 @@ const LogoGenerator = () => {
 
   return (
     <motion.div
-      className="mx-auto w-full px-4 md:w-3/4 lg:w-1/2"
+      className="mx-auto min-h-[90vh] w-full px-4 md:w-3/4 lg:w-1/2"
       initial={{ opacity: 0, filter: "blur(10px)" }}
       animate={{ opacity: 1, filter: "blur(0)" }}
       transition={{ duration: 0.4 }}
@@ -79,7 +79,7 @@ const LogoGenerator = () => {
         <h1 className="mb-2 text-xl font-medium text-primary md:text-2xl">
           Create Your Unique Logo with AI
         </h1>
-        <p className="text-muted-foreground mb-6 text-sm md:text-base">
+        <p className="text-default-400 mb-6 text-sm md:text-base">
           Fill in the details below, and let AI craft a professional and
           personalized logo for your brand in seconds!
         </p>
