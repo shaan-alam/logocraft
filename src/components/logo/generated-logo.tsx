@@ -18,7 +18,7 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
-import { downloadLogo } from "@/lib/download-logo";
+import { downloadLogo } from "@/utils/download-logo";
 
 import DeleteLogoModal from "./delete-logo-modal";
 import SaveLogoModal from "./save-logo-modal";

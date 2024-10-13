@@ -1,5 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
+import {
+  UseMutationOptions,
+  UseMutationResult,
+  useMutation,
+} from "@tanstack/react-query";
 import axios from "axios";
+
+import { getCurrentUserFromDB } from "@/utils/get-user";
+import { updateCredits } from "@/utils/update-credit";
 
 import { env } from "../../env";
 
@@ -15,14 +22,21 @@ type Payload = {
 
 type APIResponse = {
   data: {
-    data: {
-      key: number;
-      imageURL: string;
-    }[];
-  };
+    key: number;
+    imageURL: string;
+  }[];
 };
 
-export const useLogo = () => {
+type TData = {
+  key: number;
+  imageURL: string;
+}[];
+
+type UseLogoProps = (
+  options: UseMutationOptions<TData, Error, unknown, unknown>
+) => UseMutationResult<TData, Error, Payload, unknown>;
+
+export const useLogo: UseLogoProps = (options) => {
   return useMutation({
     mutationFn: async (payload: Payload) => {
       const {
@@ -34,7 +48,13 @@ export const useLogo = () => {
         custom_prompt,
       } = payload;
 
-      const { data } = await axios.post<unknown, APIResponse>(
+      const user = await getCurrentUserFromDB();
+
+      if (user && user.credits < 1) {
+        throw new Error("insufficient_credits");
+      }
+
+      const { data, status } = await axios.post<APIResponse>(
         env.NEXT_PUBLIC_API_BASE_URL,
         {
           brand_name,
@@ -46,7 +66,13 @@ export const useLogo = () => {
         }
       );
 
+      if (status === 200) {
+        await updateCredits(user?.id as string);
+      }
+
       return data.data;
     },
+   
+    ...options,
   });
 };

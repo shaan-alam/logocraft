@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getUser } from "@/utils/get-user";
+import { getCurrentUserFromDB } from "@/utils/get-user";
 
-export const useUser = (kindeUserId: string) => {
+export const useUser = () => {
   return useQuery({
-    queryKey: ["user", kindeUserId],
+    queryKey: ["user"],
     queryFn: async () => {
-      const user = await getUser(kindeUserId);
+      const user = await getCurrentUserFromDB();
       return user;
     },
+    refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
 };

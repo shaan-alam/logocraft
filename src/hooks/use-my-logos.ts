@@ -1,4 +1,3 @@
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useQuery } from "@tanstack/react-query";
 
 import { getMyLogos } from "@/utils/get-my-logos";

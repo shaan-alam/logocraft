@@ -7,9 +7,11 @@ import { Button, Input, Textarea } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { useLogo } from "@/hooks/use-logo";
+import { buyCredits } from "@/utils/buy-credits";
 
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
@@ -34,7 +36,26 @@ const LogoGenerator = () => {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
 
-  const { mutate: generateLogos, isLoading, data: logos } = useLogo();
+  const {
+    mutate: generateLogos,
+    isLoading,
+    data: logos,
+  } = useLogo({
+    onError: (err) => {
+      if (err.message == "insufficient_credits") {
+        console.log(err, "sdfasd");
+        toast(
+          "You don't have enough credits to generate a logo. Buy more credits to continue.",
+          {
+            action: {
+              label: "Buy credits",
+              onClick: buyCredits,
+            },
+          }
+        );
+      }
+    },
+  });
 
   const {
     getValues,
@@ -79,7 +100,7 @@ const LogoGenerator = () => {
         <h1 className="mb-2 text-xl font-medium text-primary md:text-2xl">
           Create Your Unique Logo with AI
         </h1>
-        <p className="text-default-400 mb-6 text-sm md:text-base">
+        <p className="mb-6 text-sm text-default-400 md:text-base">
           Fill in the details below, and let AI craft a professional and
           personalized logo for your brand in seconds!
         </p>

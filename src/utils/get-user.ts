@@ -4,7 +4,11 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 import { db } from "@/db";
 
-export const getUser = async () => {
+/**
+ * Retrieves a user from the database based on the Kinde user session.
+ * @returns {Promise<User>} The user object from the database.
+ */
+export const getCurrentUserFromDB = async () => {
   const { getUser } = await getKindeServerSession();
   const user = await getUser();
 

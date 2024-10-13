@@ -1,7 +1,6 @@
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useMutation } from "@tanstack/react-query";
 
-import { getUser } from "@/utils/get-user";
+import { getCurrentUserFromDB } from "@/utils/get-user";
 import { saveLogo } from "@/utils/save-logo";
 import { uploadImageToFirebase } from "@/utils/upload-logo";
 
@@ -15,7 +14,7 @@ export const useSaveLogo = () => {
   return useMutation({
     mutationFn: async (payload: Payload) => {
       const { imageUrl, filename, isPublic } = payload;
-      const user = await getUser();
+      const user = await getCurrentUserFromDB();
 
       const logoURL = await uploadImageToFirebase(imageUrl, user?.id, filename);
 

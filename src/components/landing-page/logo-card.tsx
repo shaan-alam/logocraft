@@ -2,7 +2,7 @@ import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import { Logo, User } from "@prisma/client";
 import { IconDownload } from "@tabler/icons-react";
 
-import { downloadLogo } from "@/lib/download-logo";
+import { downloadLogo } from "@/utils/download-logo";
 
 type LogoCardProps = {
   logo: Logo & { user: User };
