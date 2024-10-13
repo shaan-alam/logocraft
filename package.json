@@ -52,9 +52,8 @@
     "typescript": "^5",
     "uuid": "^10.0.0",
     "video-react": "^0.16.0",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
+    "zod": "^3.23.8",
     "@types/uuid": "^10.0.0"
-  }
+  },
+  "devDependencies": {}
 }
