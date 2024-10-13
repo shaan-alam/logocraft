@@ -1,6 +1,7 @@
 import crypto from "crypto";
 
 import { db } from "@/db";
+
 import { env } from "../../../../env";
 
 export async function POST(req: Request) {
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
     const eventType = req.headers.get("X-Event-Name");
     const body = await req.json();
 
-    const variant_id = body.data.first_order_item.variant_id;
+    const variant_id = body.data.attributes.first_order_item.variant_id;
 
     let credits = 0;
     if (variant_id == 553286) {
