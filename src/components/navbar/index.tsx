@@ -3,26 +3,28 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import {
-  Button,
+  Chip,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Skeleton,
 } from "@nextui-org/react";
-import { IconPlus } from "@tabler/icons-react";
 
+import { useUser } from "@/hooks/use-user";
+
+import BuyCreditsButton from "./buy-credits-button";
 import UserAvatar from "./user-avatar";
 
 const NavbarComponent = () => {
-  const data = useKindeBrowserClient();
+  const { data: user, isLoading } = useUser();
 
   return (
     <Navbar className="mx-auto bg-white p-2" maxWidth="full">
       <div className="container mx-auto flex items-center">
         <NavbarBrand>
-          <Link href="/">
+          <Link href="/" className="hidden md:block">
             <Image
               src="/logocraft.png"
               height={100}
@@ -30,20 +32,38 @@ const NavbarComponent = () => {
               alt="LogoCraft"
             />
           </Link>
+          <Link href="/" className="block md:hidden">
+            <Image
+              src="/logocraft-small.png"
+              height={50}
+              width={50}
+              alt="LogoCraft"
+            />
+          </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
           <NavbarItem>
-            {data.user && (
-              <Link href="/logo/new">
-                <Button color="primary" disableRipple>
-                  <IconPlus className="h-4 w-4" />
-                  Create New Logo
-                </Button>
-              </Link>
-            )}
+            <Chip
+              variant="shadow"
+              classNames={{
+                base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+                content: "drop-shadow shadow-black text-white",
+              }}
+            >
+              {user?.credits} Credit
+              {user?.credits && user?.credits > 1 ? "s" : ""} left
+            </Chip>
           </NavbarItem>
           <NavbarItem>
-            {data?.user && <UserAvatar user={data.user} />}
+            <BuyCreditsButton />
+          </NavbarItem>
+          <NavbarItem>
+            {isLoading && (
+              <div>
+                <Skeleton className="h-[40px] w-[40px] rounded-full" />
+              </div>
+            )}
+            {user && <UserAvatar user={user} />}
           </NavbarItem>
         </NavbarContent>
       </div>

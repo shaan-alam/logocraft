@@ -9,21 +9,37 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      screens: {
-        xs: "432px",
-      },
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: {
-          DEFAULT: "#121212",
-          foreground: "#fff",
+  	extend: {
+  		screens: {
+  			xs: '432px'
+  		},
+  		colors: {
+  			background: 'var(--background)',
+  			foreground: 'var(--foreground)',
+  			primary: {
+  				DEFAULT: '#121212',
+  				foreground: '#fff'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
+  },
+  darkMode: ["class", "class"],
+  plugins: [
+    nextui({
+      layout: {
+        radius: {
+          small: "4px",
+          medium: "8px",
+          large: "12px",
         },
       },
-    },
-  },
-  darkMode: "class",
-  plugins: [nextui()],
+    }),
+      require("tailwindcss-animate")
+],
 };
 export default config;

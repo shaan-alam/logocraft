@@ -15,7 +15,7 @@ const Footer = () => {
             <Image
               height={24}
               width={24}
-              alt="Shaan Ala"
+              alt="Shaan Alam"
               src="https://utfs.io/f/4HrWTRZRvKfTYmrI1n3yRK7IoaJmUPlSqnVfiZt2dFgHBpwz"
               className="rounded-full"
             />
