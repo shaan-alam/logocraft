@@ -1,6 +1,7 @@
 import crypto from "crypto";
 
 import { db } from "@/db";
+import { env } from "../../../../env";
 
 export async function POST(req: Request) {
   try {
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
     }
 
     // Check signature
-    const secret = `${process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE}`;
+    const secret = `${env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE}`;
     const hmac = crypto.createHmac("sha256", secret);
     const digest = Buffer.from(
       hmac.update(await clonedReq.text()).digest("hex"),

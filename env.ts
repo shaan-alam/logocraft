@@ -16,6 +16,9 @@ export const env = createEnv({
     KINDE_SITE_URL: z.string(),
     KINDE_POST_LOGOUT_REDIRECT_URL: z.string(),
     KINDE_POST_LOGIN_REDIRECT_URL: z.string(),
+    LEMON_SQUEEZY_STORE_ID: z.string(),
+    LEMON_SQUEEZY_WEBHOOK_SIGNATURE: z.string(),
+    LEMON_SQUEEZY_API_KEY: z.string(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -62,5 +65,9 @@ export const env = createEnv({
     NEXT_PUBLIC_FIREBASE_APP_ID: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID:
       process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    LEMON_SQUEEZY_STORE_ID: process.env.LEMON_SQUEEZY_STORE_ID,
+    LEMON_SQUEEZY_WEBHOOK_SIGNATURE:
+      process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE,
+    LEMON_SQUEEZY_API_KEY: process.env.LEMON_SQUEEZY_API_KEY,
   },
 });

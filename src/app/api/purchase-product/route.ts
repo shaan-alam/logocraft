@@ -5,6 +5,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { db } from "@/db";
 import { lemonSqueezyApiInstance } from "@/lib/axios";
 
+import { env } from "../../../../env";
+
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
@@ -44,7 +46,7 @@ export async function POST(req: Request) {
           store: {
             data: {
               type: "stores",
-              id: process.env.LEMON_SQUEEZY_STORE_ID?.toString(),
+              id: env.LEMON_SQUEEZY_STORE_ID?.toString(),
             },
           },
           variant: {
@@ -58,8 +60,6 @@ export async function POST(req: Request) {
     });
 
     const checkoutUrl = response.data.data.attributes.url;
-
-    console.log(response.data);
 
     return NextResponse.json({ checkoutUrl });
   } catch (error) {
