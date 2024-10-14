@@ -22,6 +22,10 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "LogoCraft",
   description: "Design Stunning Logos Instantly with AI🚀",
+  keywords: ["ai logo generator", "logo craft", "generate logos online", "logo"],
+  openGraph: {
+    images: "https://utfs.io/f/4HrWTRZRvKfTlMddutfwUGEyF4ADpRdV58mqkjaIYhbK7BN1",
+  },
 };
 
 export default function RootLayout({
