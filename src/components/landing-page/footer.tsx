@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="container mx-auto mt-auto border-t border-default-300 p-4">
+    <footer className="container mx-auto mt-auto flex justify-between border-t border-default-300 p-4">
       <p className="flex items-center space-x-2 text-default-500">
         <span>Created By</span>
         <a
@@ -24,6 +24,14 @@ const Footer = () => {
         </a>
         <span>with ❤️</span>
       </p>
+      <a
+        href="https://crotus.io/shaanalam/review"
+        className="text-default-500 underline"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Leave a Review
+      </a>
     </footer>
   );
 };

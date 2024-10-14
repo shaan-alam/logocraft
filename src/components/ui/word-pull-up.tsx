@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -35,8 +35,8 @@ export default function WordPullUp({
       initial="hidden"
       animate="show"
       className={cn(
-        "font-display text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
-        className,
+        "font-display text-4xl tracking-[-0.02em] drop-shadow-sm",
+        className
       )}
     >
       {words.split(" ").map((word, i) => (

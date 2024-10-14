@@ -12,9 +12,11 @@ export const getCurrentUserFromDB = async () => {
   const { getUser } = await getKindeServerSession();
   const user = await getUser();
 
-  return await db.user.findFirst({
-    where: {
-      kindeUserId: user?.id as string,
-    },
-  });
+  if (user) {
+    return await db.user.findFirst({
+      where: {
+        kindeUserId: user?.id as string,
+      },
+    });
+  }
 };
