@@ -51,7 +51,6 @@ const LogoGenerator = () => {
     },
     onError: (err) => {
       if (err.message == "insufficient_credits") {
-        console.log(err, "sdfasd");
         toast(
           "You don't have enough credits to generate a logo. Buy more credits to continue.",
           {
