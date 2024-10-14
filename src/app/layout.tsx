@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 import Footer from "@/components/landing-page/footer";
 import Navbar from "@/components/navbar";
@@ -30,6 +31,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9V3XCJQRTR"
+        ></Script>
+        <Script id="logo-craft-analytics">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-9V3XCJQRTR');
+        `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
