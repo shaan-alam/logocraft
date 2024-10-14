@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     } else if (variant_id == 553287) {
       credits = 100;
     }
-
+    console.log(credits);
     // Check signature
     const secret = `${env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE}`;
     const hmac = crypto.createHmac("sha256", secret);
