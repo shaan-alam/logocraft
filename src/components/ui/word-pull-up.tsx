@@ -34,10 +34,7 @@ export default function WordPullUp({
       variants={wrapperFramerProps}
       initial="hidden"
       animate="show"
-      className={cn(
-        "font-display text-4xl tracking-[-0.02em] drop-shadow-sm",
-        className
-      )}
+      className={cn("font-display text-4xl drop-shadow-sm", className)}
     >
       {words.split(" ").map((word, i) => (
         <motion.span

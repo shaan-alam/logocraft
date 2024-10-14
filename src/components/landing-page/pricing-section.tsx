@@ -7,7 +7,7 @@ export default function LogoPricingSection() {
   const pricingData = [
     {
       title: "Starter Pack",
-      price: "$5.70",
+      price: "$5.99",
       description: "Ideal for small projects and individuals",
       buttonText: "Get Starter Pack",
       features: [
@@ -19,7 +19,7 @@ export default function LogoPricingSection() {
     },
     {
       title: "Standard Pack",
-      price: "$19.00",
+      price: "$11.99",
       description: "Perfect for growing businesses and professionals",
       buttonText: "Get Standard Pack",
       features: [
@@ -57,12 +57,7 @@ export default function LogoPricingSection() {
                 )}
                 <CardHeader className="flex-col items-start pb-0 pt-2">
                   <h4 className="text-2xl">{plan.title}</h4>
-                  <h5 className="mt-2 text-4xl font-bold">
-                    {plan.price}
-                    <span className="text-lg font-normal text-zinc-500">
-                      /month
-                    </span>
-                  </h5>
+                  <h5 className="mt-2 text-4xl font-bold">{plan.price}</h5>
                   <p className="mt-2 text-sm text-zinc-500">
                     {plan.description}
                   </p>

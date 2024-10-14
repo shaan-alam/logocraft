@@ -12,7 +12,7 @@ const WallOfLogos = () => {
     <div className="my-12 py-8 text-center">
       <div className="container mx-auto">
         <h1 className="text-3xl md:text-4xl lg:text-5xl">Wall of Logos</h1>
-        <p className="text-muted-foreground mt-2 text-sm md:text-base">
+        <p className="mb-12 mt-2 text-center text-sm text-default-500 md:text-base">
           See what other users have generated 🖤
         </p>
         {isLoading && <LogoSkeletonCard />}
