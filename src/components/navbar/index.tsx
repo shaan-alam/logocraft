@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import {
   Chip,
   Navbar,
@@ -18,6 +19,7 @@ import BuyCreditsButton from "./buy-credits-button";
 import UserAvatar from "./user-avatar";
 
 const NavbarComponent = () => {
+  const { isAuthenticated } = useKindeBrowserClient();
   const { data: user, isLoading } = useUser();
 
   return (
@@ -41,31 +43,33 @@ const NavbarComponent = () => {
             />
           </Link>
         </NavbarBrand>
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <Chip
-              variant="shadow"
-              classNames={{
-                base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
-                content: "drop-shadow shadow-black text-white",
-              }}
-            >
-              {user?.credits} Credit
-              {user?.credits && user?.credits > 1 ? "s" : ""} left
-            </Chip>
-          </NavbarItem>
-          <NavbarItem>
-            <BuyCreditsButton />
-          </NavbarItem>
-          <NavbarItem>
-            {isLoading && (
-              <div>
-                <Skeleton className="h-[40px] w-[40px] rounded-full" />
-              </div>
-            )}
-            {user && <UserAvatar user={user} />}
-          </NavbarItem>
-        </NavbarContent>
+        {isAuthenticated && (
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <Chip
+                variant="shadow"
+                classNames={{
+                  base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+                  content: "drop-shadow shadow-black text-white",
+                }}
+              >
+                {user?.credits} Credit
+                {user?.credits && user?.credits > 1 ? "s" : ""} left
+              </Chip>
+            </NavbarItem>
+            <NavbarItem>
+              <BuyCreditsButton />
+            </NavbarItem>
+            <NavbarItem>
+              {isLoading && (
+                <div>
+                  <Skeleton className="h-[40px] w-[40px] rounded-full" />
+                </div>
+              )}
+              {user && <UserAvatar user={user} />}
+            </NavbarItem>
+          </NavbarContent>
+        )}
       </div>
     </Navbar>
   );
