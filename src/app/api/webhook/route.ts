@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       const isSuccessful = body.data.attributes.status === "paid";
 
       if (isSuccessful && userId) {
-        await db.user.update({
+        const user = await db.user.update({
           where: {
             id: userId,
           },
@@ -50,6 +50,7 @@ export async function POST(req: Request) {
             },
           },
         });
+        console.log(user);
       }
     }
 
