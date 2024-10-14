@@ -57,7 +57,6 @@ const GeneratedLogo = ({ name, logo, isSaved }: GeneratedLogoProps) => {
       className="relative flex flex-col items-center justify-center"
       initial={{ opacity: 0, filter: "blur(10px)", scale: 0.8 }}
       animate={{ opacity: 1, filter: "blur(0)", scale: 1 }}
-      transition={{ duration: 0.4 }}
     >
       <Card isFooterBlurred radius="lg" className="border-none">
         <Image
