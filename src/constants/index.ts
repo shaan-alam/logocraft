@@ -204,11 +204,12 @@ export const faqs = [
   },
   {
     question: "How many logos per credit?",
-    answer: "Each credit lets you generate three unique logos.",
+    answer: "1 Credit = 1 Generated Logo",
   },
   {
     question: "Can I customize logos?",
-    answer: "Yes, you can adjust the style, colors, and design elements.",
+    answer:
+      "Yes, you can adjust the style, colors and give custom prompts before generating the logo.",
   },
   {
     question: "What formats can I download?",
@@ -227,5 +228,10 @@ export const faqs = [
   {
     question: "Can I use logos commercially?",
     answer: "Yes, the logos you create are yours to use commercially.",
+  },
+  {
+    question: "What if I don't like the AI generated logo?",
+    answer:
+      "If the AI-generated logo doesn't meet your expectations, don't worry! We'll collaborate closely until you're completely happy. If not, we'll issue a refund without delay.",
   },
 ];

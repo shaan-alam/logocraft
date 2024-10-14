@@ -9,7 +9,7 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import { User } from "@prisma/client";
-import { IconLogout, IconPhotoAi } from "@tabler/icons-react";
+import { IconLogout, IconPhotoAi, IconPlus } from "@tabler/icons-react";
 
 type UserAvatarProps = {
   user: User;
@@ -29,6 +29,14 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
       </DropdownTrigger>
       <DropdownMenu aria-label="Example with disabled actions">
         <DropdownItem key="new">
+          <Link href="/logo/new">
+            <div className="flex items-center space-x-2">
+              <IconPlus className="h-4 w-4" />
+              <span>Generate Logo</span>
+            </div>
+          </Link>
+        </DropdownItem>
+        <DropdownItem key="profile">
           <Link href={`/user/${user.id}`}>
             <div className="flex items-center space-x-2">
               <IconPhotoAi className="h-4 w-4" />
@@ -36,7 +44,7 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
             </div>
           </Link>
         </DropdownItem>
-        <DropdownItem key="delete" className="text-danger" color="danger">
+        <DropdownItem key="sign-out" className="text-danger" color="danger">
           <LogoutLink>
             <div className="flex items-center space-x-2">
               <IconLogout className="h-4 w-4" />
