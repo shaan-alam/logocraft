@@ -190,3 +190,42 @@ export const colors = [
     hex: ["#ff1bff", "#118380", "#fff3df"],
   },
 ];
+
+export const faqs = [
+  {
+    question: "What is LogoCraft?",
+    answer:
+      "LogoCraft is an AI tool that helps you generate custom logos quickly and easily.",
+  },
+  {
+    question: "How does it work?",
+    answer:
+      "Describe your brand, choose styles and colors, and our AI will create a logo instantly.",
+  },
+  {
+    question: "How many logos per credit?",
+    answer: "Each credit lets you generate three unique logos.",
+  },
+  {
+    question: "Can I customize logos?",
+    answer: "Yes, you can adjust the style, colors, and design elements.",
+  },
+  {
+    question: "What formats can I download?",
+    answer: "You can download the logos in PNG format.",
+  },
+  {
+    question: "What styles are available?",
+    answer:
+      "Choose from over 10 styles including modern, vintage, geometric, and more.",
+  },
+  {
+    question: "What about color schemes?",
+    answer:
+      "Select from various preset schemes or create your own custom palette.",
+  },
+  {
+    question: "Can I use logos commercially?",
+    answer: "Yes, the logos you create are yours to use commercially.",
+  },
+];

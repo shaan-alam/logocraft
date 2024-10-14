@@ -23,7 +23,7 @@ const NavbarComponent = () => {
   const { data: user, isLoading } = useUser();
 
   return (
-    <Navbar className="mx-auto bg-white p-2" maxWidth="full">
+    <Navbar className="mx-auto bg-white p-2 backdrop-blur-xl bg-opacity-50" maxWidth="full">
       <div className="container mx-auto flex items-center">
         <NavbarBrand>
           <Link href="/" className="hidden md:block">

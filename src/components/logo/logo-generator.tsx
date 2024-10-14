@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Textarea } from "@nextui-org/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { TwitterPicker } from "react-color";
 import { useForm } from "react-hook-form";
@@ -36,11 +37,16 @@ const LogoGenerator = () => {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
 
+  const queryClient = useQueryClient();
+
   const {
     mutate: generateLogos,
     isLoading,
     data: logos,
   } = useLogo({
+    onSuccess: () => {
+      queryClient.refetchQueries(["user"]);
+    },
     onError: (err) => {
       if (err.message == "insufficient_credits") {
         console.log(err, "sdfasd");
