@@ -18,10 +18,13 @@ export default function LandingPage() {
       </div>
       <HeroSection />
       <div className="container mx-auto my-40">
-        <h1 className="mb-12 text-center text-3xl leading-7 md:text-4xl lg:text-5xl">
+        <h1 className="text-center text-3xl leading-7 md:text-4xl lg:text-5xl">
           Watch the Demo
         </h1>
-        <div className="mx-auto h-auto w-auto rounded-lg border-[10px] border-default-200 ">
+        <p className="mb-12 mt-2 text-center text-sm text-default-500 md:text-base">
+          Hover over the demo and follow the cursor to engage with the demo!
+        </p>
+        <div className="mx-auto h-auto w-auto rounded-lg border-[10px] border-default-200">
           <ArcadeEmbed />
           {/* <Player
             height={400}
