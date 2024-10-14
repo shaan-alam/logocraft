@@ -32,3 +32,10 @@ model Logo {
   createdAt DateTime @default(now())
   isPublic  Boolean  @default(false)
 }
+
+model Bug {
+  id    String @id @default(uuid())
+  name  String
+  email String
+  bug   String
+}
