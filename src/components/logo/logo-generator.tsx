@@ -16,6 +16,7 @@ import { buyCredits } from "@/utils/buy-credits";
 
 import LogoBrandIdentitySelector from "./logo-brand-identity-selector";
 import LogoColorSelector from "./logo-color-selctor";
+import LogoCounter from "./logo-counter";
 import LogoGenerationResults from "./logo-generation-results";
 import LogoIndustrySelector from "./logo-industry-selector";
 import LogoStyleSelector from "./logo-style-selector";
@@ -28,6 +29,7 @@ export const formSchema = z.object({
   logo_style: z.string().min(1),
   color_scheme: z.string().min(1),
   custom_prompt: z.string().optional(),
+  no_of_logos: z.number().min(1).max(3),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,6 +82,7 @@ const LogoGenerator = () => {
       logo_style: "",
       color_scheme: "",
       custom_prompt: "",
+      no_of_logos: 1,
     },
   });
 
@@ -92,6 +95,7 @@ const LogoGenerator = () => {
       custom_prompt: data.custom_prompt,
       industry: data.industry,
       logo_style: data.logo_style,
+      no_of_logos: data.no_of_logos
     });
   };
 
@@ -186,6 +190,11 @@ const LogoGenerator = () => {
               </div>
             </div>
           )}
+          <div>
+            <LogoCounter
+              onChangeNumber={(number) => setValue("no_of_logos", number)}
+            />
+          </div>
           <div>
             <Textarea
               label="Custom Prompt (Optional)"

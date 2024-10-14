@@ -18,6 +18,7 @@ type Payload = {
   industry: string;
   logo_style: string;
   custom_prompt?: string;
+  no_of_logos: number;
 };
 
 type APIResponse = {
@@ -46,6 +47,7 @@ export const useLogo: UseLogoProps = (options) => {
         industry,
         logo_style,
         custom_prompt,
+        no_of_logos,
       } = payload;
 
       const user = await getCurrentUserFromDB();
@@ -63,16 +65,17 @@ export const useLogo: UseLogoProps = (options) => {
           logo_style,
           color_scheme,
           custom_prompt,
+          no_of_logos,
         }
       );
 
       if (status === 200) {
-        await updateCredits(user?.id as string);
+        await updateCredits(user?.id as string, no_of_logos);
       }
 
       return data.data;
     },
-   
+
     ...options,
   });
 };
