@@ -51,10 +51,6 @@ const HeroSection = () => {
               <span className="mr-2">🌟</span> Easily extract and apply your
               logo&apos;s color palette
             </li>
-            <li className="text-muted-foreground flex items-start justify-start text-left text-sm md:text-base">
-              <span className="mr-2">🚀</span> Enjoy free logo generation for
-              now—pricing will be introduced soon!
-            </li>
           </motion.ul>
 
           <motion.div
