@@ -44,8 +44,7 @@ export default function Footer() {
           use of our product for generating content that infringes upon
           copyright, violates intellectual property rights, or creates any adult
           content. Any misuse of our product in violation of these terms may
-          result in the immediate suspension of service. Menubar AI is committed
-          to upholding the highest standards of legal and ethical compliance. By
+          result in the immediate suspension of service. By
           using our services, you agree to abide by our terms and conditions.
         </p>
       </div>
