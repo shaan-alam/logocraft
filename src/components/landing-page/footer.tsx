@@ -37,6 +37,18 @@ export default function Footer() {
           <ReportBugModal />
         </div>
       </div>
+      <div className="my-4 text-center">
+        <p className="text-sm text-default-500 leading-7">
+          The AI models used in LogoCraft, including any AI-generated outputs,
+          are intended for lawful and ethical use only. We strictly prohibit the
+          use of our product for generating content that infringes upon
+          copyright, violates intellectual property rights, or creates any adult
+          content. Any misuse of our product in violation of these terms may
+          result in the immediate suspension of service. Menubar AI is committed
+          to upholding the highest standards of legal and ethical compliance. By
+          using our services, you agree to abide by our terms and conditions.
+        </p>
+      </div>
     </footer>
   );
 }
